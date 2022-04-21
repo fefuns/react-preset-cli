@@ -18,14 +18,14 @@ const RenderRoutes = ({ routes }) => {
           if (!children) {
             if (route.redirect) {
               const { redirect, path, ...others } = route
-              return <Redirect key={index} from={route.path} to={redirect} {...others} exact />
+              return <Redirect key={index} from={route.path} to={redirect} {...others} />
             } else if (authId.length > 0) {
               // 需要权限：登录也算
               const { component, ...others } = route
-              return <AuthRoute key={index} component={component} {...others} exact />
+              return <AuthRoute key={index} component={component} {...others} />
             } else {
               const { component, ...others } = route
-              return <Route key={index} component={component} {...others} exact />
+              return <Route key={index} component={component} {...others} />
             }
           } else {
             const { component: LayoutComponent, children, ...others } = route
@@ -37,7 +37,6 @@ const RenderRoutes = ({ routes }) => {
             return <Route key={index} {...others} component={RenderComponent} />
           }
         })}
-        {/* <Redirect to='/' />; */}
       </Switch>
     </Suspense>
   )

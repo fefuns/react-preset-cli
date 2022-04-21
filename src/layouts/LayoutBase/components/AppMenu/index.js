@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { Menu, Modal } from 'antd'
-import { LogoutOutlined } from '@ant-design/icons'
 import routes from 'routes'
 import { cloneDeep } from 'lodash'
 import './style.less'
@@ -54,11 +53,25 @@ const getSubMenuItems = (item, index, props) => {
     return null
   }
   const navItem = (
-    <MenuItem key={item.path} data-key={item.path}>
-      <Link to={item.path}>
-        {/* {item.meta.icon} */}
+    <MenuItem
+      key={item.path}
+      data-key={item.path}
+      onClick={() => {
+        // 外链功能
+        if (item.meta?.link) {
+          window.open(item.meta.link)
+        }
+        return false
+      }}
+    >
+      {item.meta?.link ? (
         <span className='menu-text'>{item.meta?.title}</span>
-      </Link>
+      ) : (
+        <Link to={item.path}>
+          {/* {item.meta.icon} */}
+          <span className='menu-text'>{item.meta?.title}</span>
+        </Link>
+      )}
     </MenuItem>
   )
 
@@ -117,6 +130,7 @@ const SiderMenu = props => {
 
   const parentPaths = getParentPaths(formatedRoutes, props)
   const openKeys = parentPaths.filter(item => pathname.startsWith(item))
+  console.log(openKeys)
 
   return (
     <Menu
@@ -124,14 +138,9 @@ const SiderMenu = props => {
       defaultOpenKeys={openKeys}
       mode='inline'
       className='sider-menu'
+      theme='dark'
     >
       {getMenuItems(formatedRoutes, props)}
-      {window.location.origin.indexOf('localhost') > -1 && (
-        <MenuItem key='logout' onClick={logout}>
-          <LogoutOutlined />
-          <span className='nav-text'>退出登录</span>
-        </MenuItem>
-      )}
     </Menu>
   )
 }

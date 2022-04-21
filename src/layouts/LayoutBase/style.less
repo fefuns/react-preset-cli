@@ -1,59 +1,37 @@
 .app-root {
-  background: #f5f5f5;
-  font-size: 14px;
   .app-sider {
-    background: #ffffff;
-    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+    .logo {
+      height: 32px;
+      margin: 16px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: rgba(255, 255, 255, 0.65);
+    }
   }
-  .app-main {
-    background: #f5f5f5;
-    .app-page-wrap {
-      min-height: calc(100vh - 98px);
+  .app-site {
+    .app-header,
+    .app-page {
+      background: #fff;
     }
     .app-header {
-      background: #ffffff;
-      padding: 0 24px;
-      height: 48px;
-      line-height: 48px;
-      display: flex;
-      justify-content: space-between;
-      .title {
-        display: flex;
-        align-items: center;
-        .back {
-          margin-right: 10px;
-        }
-        // .anticon {
-        //   font-size: 12px;
-        //   // margin-right: 8px;
-        //   // color: #f46a00;
-        // }
-        .text {
-          font-size: 16px;
-          font-weight: 550;
-          margin-right: 8px;
-          color: rgba(0, 0, 0, 0.85);
-          // &.txt-orange {
-          //   cursor: pointer;
-          // }
-          // &::before {
-          //   content: '/';
-          //   margin: 0 5px;
-          // }
-          // &:first-child::before {
-          //   display: none;
-          // }
-        }
-        .text-sub {
-          font-size: 12px;
-          margin-right: 8px;
-          color: rgba(0, 0, 0, 0.45);
-        }
-      }
+      height: 60px;
+      padding: 0;
     }
-    .app-content {
-      min-height: calc(100vh - 98px);
-      padding: 16px 16px 0;
+    .app-page {
+      min-height: calc(100vh - 114px);
+      margin: 0;
+    }
+    .app-footer {
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+      padding: 0;
     }
   }
 }

@@ -1,41 +1,44 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
-import SiderMenu from './components/SiderMenu'
+import AppMenu from './components/AppMenu'
+import AppHeader from './components/AppHeader'
 import './style.less'
 
-const { Sider, Content } = Layout
-const localJson = require('../../../package.json')
-const version = localJson.version
+const { Sider, Content, Header, Footer } = Layout
 
 class LayoutBase extends Component {
-  state = {
-    // 用户是管理员的其它企业
-    entityOthers: [],
-  }
-
-  componentDidMount() {}
   render() {
     return (
-      <Layout className='app-root'>
+      <Layout className='app-root' hasSider>
         <Sider
           className='app-sider'
           style={{
-            overflowX: 'hidden',
-            overflowY: 'auto',
+            overflow: 'auto',
             height: '100vh',
             position: 'fixed',
             left: 0,
-            top:
-              (document.getElementById('companyHeader') &&
-                document.getElementById('companyHeader').clientHeight) ||
-              0,
+            top: 0,
+            bottom: 0,
           }}
-          theme='light'
         >
-          <SiderMenu />
+          <div className='logo' />
+          <AppMenu />
         </Sider>
-        <Layout className='app-main' style={{ marginLeft: 200 }} data-version={version}>
-          <Content className='app-page-wrap'>{this.props.children}</Content>
+        <Layout
+          className='app-site'
+          style={{
+            marginLeft: 200,
+          }}
+        >
+          <AppHeader />
+          <Content
+            style={{
+              margin: '24px 16px 0',
+            }}
+          >
+            <div className='app-page'>{this.props.children}</div>
+          </Content>
+          <Footer className='app-footer'>React · 练习册</Footer>
         </Layout>
       </Layout>
     )
