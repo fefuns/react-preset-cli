@@ -64,6 +64,29 @@ const routes = [
         },
         children: [
           {
+            path: '/life-cycle',
+            component: LayoutBlank,
+            meta: {
+              title: '生命周期',
+            },
+            children: [
+              {
+                path: '/single-com',
+                component: lazy(() => import('views/Basic/LifeCycle/SingleCom')),
+                meta: {
+                  title: '单组件生命周期',
+                },
+              },
+              {
+                path: '/parent-child-com',
+                component: lazy(() => import('views/Basic/LifeCycle/ParentChildCom')),
+                meta: {
+                  title: '父子组件生命周期',
+                },
+              },
+            ],
+          },
+          {
             path: '/set-state',
             exact: true,
             component: lazy(() => import('views/Basic/SetState')),

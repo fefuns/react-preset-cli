@@ -4,7 +4,7 @@ import AppMenu from './components/AppMenu'
 import AppHeader from './components/AppHeader'
 import './style.less'
 
-const { Sider, Content, Header, Footer } = Layout
+const { Sider, Content, Footer } = Layout
 
 class LayoutBase extends Component {
   render() {
