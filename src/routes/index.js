@@ -89,10 +89,10 @@ const routes = [
           {
             path: '/set-state',
             exact: true,
-            component: lazy(() => import('views/Basic/SetState')),
+            component: lazy(() => import('views/Basic/SetStateDemo')),
             meta: {
-              title: 'setState',
-              desc: '关于setState究竟是同步还是异步？',
+              title: 'setState执行机制',
+              desc: '它是同步还是异步？如果是异步，那它是属于宏任务还是微任务？',
             },
           },
         ],
