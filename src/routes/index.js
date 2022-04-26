@@ -134,9 +134,9 @@ const routes = [
           },
           {
             path: '/portals',
-            component: lazy(() => import('views/Basic/SetStateDemo')),
+            component: lazy(() => import('views/Basic/Portals')),
             meta: {
-              title: 'Portals',
+              title: '传送门Portals',
             },
           },
           {
