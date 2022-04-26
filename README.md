@@ -7,19 +7,16 @@
     - 单文件生命周期
     - 父子组件生命周期
   - setState 执行机制
-    - 同步还是异步？
-    - 宏任务还是微任务？
-  - 基础组件通信
-    - 父子组件通信
-    - 兄弟组件通信
-    - 父组件向后代组件传递
-    - react-redux
-    - react-mobx
-  - 列表中的 key
+    - 不可变值
+    - 同步还是异步？宏任务还是微任务？
+    - 可能被合并
+  - 列表 & key
   - React.refs
-  - 受控组件
   - 非受控组件
   - 高阶组件 HOC
+  - RenderProps
+  - Portals
+- 组件通信
 - react-hooks:
   - useState
   - useEffect

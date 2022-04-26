@@ -88,11 +88,79 @@ const routes = [
           },
           {
             path: '/set-state',
-            exact: true,
             component: lazy(() => import('views/Basic/SetStateDemo')),
             meta: {
               title: 'setState执行机制',
               desc: '它是同步还是异步？如果是异步，那它是属于宏任务还是微任务？',
+            },
+          },
+          {
+            path: '/list-key',
+            component: lazy(() => import('views/Basic/ListKey')),
+            meta: {
+              title: '列表&key',
+              desc: 'React中的key究竟有什么作用？',
+            },
+          },
+          {
+            path: '/refs',
+            component: lazy(() => import('views/Basic/Refs')),
+            meta: {
+              title: 'React refs',
+              desc: 'React refs的应用场景',
+            },
+          },
+          {
+            path: '/uncontrolled',
+            component: lazy(() => import('views/Basic/Uncontrolled')),
+            meta: {
+              title: '非受控组件',
+              desc: '什么是非受控组件？什么是受控组件？',
+            },
+          },
+          {
+            path: '/hoc',
+            component: lazy(() => import('views/Basic/Hoc')),
+            meta: {
+              title: '高阶组件HOC',
+            },
+          },
+          {
+            path: '/render-props',
+            component: lazy(() => import('views/Basic/RenderProps')),
+            meta: {
+              title: 'RenderProps',
+            },
+          },
+          {
+            path: '/portals',
+            component: lazy(() => import('views/Basic/SetStateDemo')),
+            meta: {
+              title: 'Portals',
+            },
+          },
+          {
+            path: '/optimizing',
+            component: lazy(() => import('views/Basic/SetStateDemo')),
+            meta: {
+              title: '性能优化',
+            },
+          },
+        ],
+      },
+      {
+        path: '/communication',
+        component: LayoutBlank,
+        meta: {
+          title: '组件通信',
+        },
+        children: [
+          {
+            path: '/useState',
+            component: lazy(() => import('views/Basic/LifeCycle')),
+            meta: {
+              title: 'useState',
+              desc: '关于setState究竟是同步还是异步？',
             },
           },
         ],
