@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default props => <>{props.children}</>
+export default function AuthRoute(props) {
+  return <>{props.children}</>
+}

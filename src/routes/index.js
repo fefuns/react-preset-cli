@@ -123,6 +123,7 @@ const routes = [
             component: lazy(() => import('views/Basic/Hoc')),
             meta: {
               title: '高阶组件HOC',
+              desc: '高阶组件是一个函数，能够接受一个组件并返回一个新的组件',
             },
           },
           {
@@ -137,14 +138,138 @@ const routes = [
             component: lazy(() => import('views/Basic/Portals')),
             meta: {
               title: '传送门Portals',
+              desc: 'Portals 提供了一种很好的方法，将子节点渲染到父组件 DOM 层次结构之外的 DOM 节点。',
             },
           },
           {
-            path: '/optimizing',
-            component: lazy(() => import('views/Basic/SetStateDemo')),
+            path: '/context',
+            component: lazy(() => import('views/Basic/Context')),
             meta: {
-              title: '性能优化',
+              title: '上下文Context',
+              desc: '上下文(Context) 提供了一种通过组件树传递数据的方法，无需在每个级别手动传递 props 属性。',
             },
+          },
+        ],
+      },
+      {
+        path: '/hooks',
+        component: LayoutBlank,
+        meta: {
+          title: 'react-hooks',
+        },
+        children: [
+          {
+            path: '/useState',
+            component: lazy(() => import('views/Hooks/UseState')),
+            meta: {
+              title: 'useState',
+              desc: '用useState实现state和setState的功能',
+            },
+          },
+          {
+            path: '/useEffect',
+            component: lazy(() => import('views/Hooks/UseEffect')),
+            meta: {
+              title: 'useEffect',
+              desc: '用useEffect模拟实现componentDidMount 和 componentDidUpdate 以及 componentWillUnmount',
+            },
+          },
+          {
+            path: '/useRef',
+            component: lazy(() => import('views/Hooks/UseRef')),
+            meta: {
+              title: 'useRef',
+              desc: '通常用于获取DOM，来操作DOM',
+            },
+          },
+          {
+            path: '/useContext',
+            component: lazy(() => import('views/Hooks/UseContext')),
+            meta: {
+              title: 'useContext',
+              desc: '',
+            },
+          },
+          {
+            path: '/useReducer',
+            component: lazy(() => import('views/Hooks/UseReducer')),
+            meta: {
+              title: 'useReducer',
+              desc: '',
+            },
+          },
+          {
+            path: '/useMemo',
+            component: lazy(() => import('views/Hooks/UseMemo')),
+            meta: {
+              title: 'useMemo',
+              desc: 'memo是一个高阶组件，类似PureComponent，可以让子组件的props进行浅比较来阻止子组件的重新渲染，但是有些情况下，光靠memo还不够，还需要配合useMemo来缓存数据，进一步避免子组件进行不必要的重新渲染',
+            },
+          },
+          {
+            path: '/useCallback',
+            component: lazy(() => import('views/Hooks/UseCallback')),
+            meta: {
+              title: 'useCallback',
+              desc: 'memo是一个高阶组件，类似PureComponent，可以让子组件的props进行浅比较来阻止子组件的重新渲染，但是有些情况下，光靠memo还不够，还需要配合useMemo来缓存数据，进一步避免子组件进行不必要的重新渲染。但是useMemo只适合用来缓存数据，如果碰到子组件有回调函数来改变父组件状态，发现子组件又会发生不必要的重新渲染，所以就需要有useCallback来对这种回调函数进行处理',
+            },
+          },
+          {
+            path: '/customHooks',
+            component: LayoutBlank,
+            meta: {
+              title: '自定义Hooks',
+            },
+            children: [
+              {
+                path: '/useAxios',
+                component: lazy(() => import('views/Hooks/CustomHooks/UseAxios')),
+                meta: {
+                  title: 'useAxios',
+                },
+              },
+              {
+                path: '/useMousePosition',
+                component: lazy(() => import('views/Hooks/CustomHooks/UseMousePosition')),
+                meta: {
+                  title: 'useMousePosition',
+                  desc: '对比class组件中逻辑复用的HOC方式和RenderProps方式看看hooks来处理这种逻辑复用有什么优势',
+                },
+              },
+            ],
+          },
+          {
+            path: '/trap',
+            component: LayoutBlank,
+            meta: {
+              title: 'Hooks坑点',
+            },
+            children: [
+              {
+                path: '/trap1',
+                component: lazy(() => import('views/Hooks/Trap/Trap1')),
+                meta: {
+                  title: 'hooks 坑1',
+                  desc: 'useState初始化值，只有第一次有效',
+                },
+              },
+              {
+                path: '/trap2',
+                component: lazy(() => import('views/Hooks/Trap/Trap2')),
+                meta: {
+                  title: 'hooks 坑2',
+                  desc: 'useEffect第二个参数是空的时候，不能直接访问到state，会报错',
+                },
+              },
+              {
+                path: '/trap3',
+                component: lazy(() => import('views/Hooks/Trap/Trap3')),
+                meta: {
+                  title: 'hooks 坑3',
+                  desc: 'useEffect第二个参数是一个引用类型的时候，会出现死循环',
+                },
+              },
+            ],
           },
         ],
       },
@@ -166,21 +291,11 @@ const routes = [
         ],
       },
       {
-        path: '/react-hooks',
-        component: LayoutBlank,
+        path: '/optimizing',
+        component: lazy(() => import('views/Basic/SetStateDemo')),
         meta: {
-          title: 'react-hooks',
+          title: '性能优化',
         },
-        children: [
-          {
-            path: '/useState',
-            component: lazy(() => import('views/Basic/LifeCycle')),
-            meta: {
-              title: 'useState',
-              desc: '关于setState究竟是同步还是异步？',
-            },
-          },
-        ],
       },
       {
         path: '/special-route',
@@ -216,7 +331,13 @@ const routes = [
           },
         ],
       },
-
+      {
+        path: '/tools',
+        component: lazy(() => import('views/Basic/SetStateDemo')),
+        meta: {
+          title: '工具函数',
+        },
+      },
       /**
        * 以下两项写在最下面
        */

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, Modal } from 'antd'
+import { Menu } from 'antd'
 import routes from 'routes'
 import { cloneDeep } from 'lodash'
 import './style.less'
-import { delStorage } from 'utils'
 import { getCurRoute, formatRoutes } from 'utils/routerHelper'
 
 const { SubMenu } = Menu
@@ -94,7 +93,7 @@ function getParentPaths(routes, props) {
     allMenus.forEach(item => {
       if (
         item.children &&
-        item.children.some(child => child.meta && child.meta.title && child.meta.isMenu)
+        item.children.some(child => child.meta && child.meta.title && !child.meta.hidden)
       ) {
         paths.push(item.path)
         getPaths(item.children, props)
@@ -106,17 +105,17 @@ function getParentPaths(routes, props) {
 }
 
 // 退出登录
-const logout = () => {
-  const path = window.location.origin
-  Modal.confirm({
-    centered: true,
-    title: '确定要退出登录吗？',
-    onOk: () => {
-      delStorage('loginInfo')
-      window.location.href = '/login'
-    },
-  })
-}
+// const logout = () => {
+//   const path = window.location.origin
+//   Modal.confirm({
+//     centered: true,
+//     title: '确定要退出登录吗？',
+//     onOk: () => {
+//       delStorage('loginInfo')
+//       window.location.href = '/login'
+//     },
+//   })
+// }
 // 侧边菜单
 const SiderMenu = props => {
   const { location } = props
@@ -130,7 +129,6 @@ const SiderMenu = props => {
 
   const parentPaths = getParentPaths(formatedRoutes, props)
   const openKeys = parentPaths.filter(item => pathname.startsWith(item))
-  console.log(openKeys)
 
   return (
     <Menu

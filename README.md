@@ -8,7 +8,7 @@
     - 父子组件生命周期
   - setState 执行机制
     - 不可变值
-    - 同步还是异步？宏任务还是微任务？
+    - 同步还是异步？如果是异步？那它是宏任务还是微任务？
     - 可能被合并
   - 列表 & key
   - React.refs
@@ -16,13 +16,23 @@
   - 高阶组件 HOC
   - RenderProps
   - Portals
-- 组件通信
+  - Context
 - react-hooks:
   - useState
   - useEffect
-  - ...
-  - 自定义 hooks:
-    - ...
+  - useRef
+  - useContext
+  - useReducer
+  - useMemo
+  - useCallback
+  - 自定义 hooks
+  - Hooks 常见的坑点
+- 组件通信
+- 性能优化
+  - SCU
+  - PureComponent
+  - memo, useMemo, useCallback
+  - react 做浅比较的原理是利用了 Object.js() 方法
 - 八股文：
   - react 的特性
   - vdom 与 diff
@@ -43,7 +53,7 @@
   - 有些路由是菜单有些不是，怎么区分
   - 多级目录，无限套娃
   - 侧边栏外链
-  - 页面刷新了也要默认展开当前菜单的所有父级
+  - 页面刷新了也要默认展开当前菜单的所有父级，即 antd 的 defaultOpenKeys 是根据 url 动态设置的
   - 进去详情页也要高亮显示列表页菜单
   - 权限问题，这个感觉比 vue 的简单得多，vue 的常规做法还需要后端返回对应的路由格式，用 addRoute 去动态添加路由
   - 如果我想缓存一个页面...类似 vue 的 keep-alive

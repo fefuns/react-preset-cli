@@ -41,7 +41,7 @@ const RenderRoutes = ({ routes }) => {
     </Suspense>
   )
 }
-export default () => {
+const App = () => {
   const formatedRoutes = formatRoutes(cloneDeep(routes), '')
   return (
     <BrowserRouter>
@@ -49,3 +49,4 @@ export default () => {
     </BrowserRouter>
   )
 }
+export default App
