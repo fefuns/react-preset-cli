@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import './style.less';
 
-const docBody = document.body;
 class Modal extends Component {
   constructor(props) {
     super(props)
