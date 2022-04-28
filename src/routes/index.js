@@ -344,7 +344,7 @@ const routes = [
       {
         path: '/',
         exact: true,
-        redirect: '/basic/set-state',
+        redirect: '/basic/life-cycle/single-com',
         meta: {
           hidden: true,
         },

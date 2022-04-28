@@ -35,7 +35,7 @@ class SingleCom extends Component {
   render() {
     console.log('render()')
     return (
-      <div>
+      <div style={{ height: 2000 }}>
         看控制台打印的单文件生命周期顺序：
         {this.renderJsx()}
         {this.renderArray()}
