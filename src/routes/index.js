@@ -276,19 +276,105 @@ const routes = [
         ],
       },
       {
-        path: '/communication',
+        path: '/connect',
         component: LayoutBlank,
         meta: {
           title: '组件通信',
         },
         children: [
           {
-            path: '/useState',
-            component: lazy(() => import('views/Basic/LifeCycle')),
+            path: '/father-son',
+            component: lazy(() => import('views/Connect/FatherSon')),
             meta: {
-              title: 'useState',
-              desc: '关于setState究竟是同步还是异步？',
+              title: '父子组件通信',
             },
+          },
+          {
+            path: '/brother',
+            component: lazy(() => import('views/Connect/Brother')),
+            meta: {
+              title: '兄弟组件通信',
+            },
+          },
+          {
+            path: '/grandChildren',
+            component: LayoutBlank,
+            meta: {
+              title: '后代组件通信',
+            },
+            children: [
+              {
+                path: '/context',
+                component: lazy(() => import('views/Connect/GrandChildren/Context')),
+                meta: {
+                  title: 'class-context',
+                  desc: 'class 写法',
+                },
+              },
+              {
+                path: '/use-context',
+                component: lazy(() => import('views/Connect/GrandChildren/UseContext')),
+                meta: {
+                  title: 'hooks-useContext',
+                  desc: 'hooks 写法',
+                },
+              },
+            ],
+          },
+          {
+            path: '/no-relation',
+            component: LayoutBlank,
+            meta: {
+              title: '非关系组件通信',
+            },
+            children: [
+              {
+                path: '/react-redux',
+                component: LayoutBlank,
+                meta: {
+                  title: 'react-redux',
+                },
+                children: [
+                  {
+                    path: '/class-demo',
+                    component: lazy(() => import('views/Connect/NoRelation/ReactRedux/ClassDemo')),
+                    meta: {
+                      title: 'class用法',
+                    },
+                  },
+                  {
+                    path: '/hooks-demo',
+                    component: lazy(() => import('views/Connect/NoRelation/ReactRedux/HooksDemo')),
+                    meta: {
+                      title: 'hooks用法',
+                    },
+                  },
+                ],
+              },
+              {
+                path: '/react-mobx',
+                component: LayoutBlank,
+                meta: {
+                  title: 'react-mobx',
+                },
+                children: [
+                  {
+                    path: '/class-demo',
+                    component: lazy(() => import('views/Connect/NoRelation/ReactMobx/ClassDemo')),
+                    meta: {
+                      title: 'class用法',
+                    },
+                  },
+                  {
+                    path: '/hooks-demo',
+                    component: lazy(() => import('views/Connect/NoRelation/ReactMobx/HooksDemo')),
+                    meta: {
+                      title: 'hooks用法',
+                    },
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
