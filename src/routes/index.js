@@ -474,6 +474,14 @@ const routes = [
               desc: '理解new原理并实现',
             },
           },
+          {
+            path: '/flatten',
+            component: lazy(() => import('views/Utils/Flatten')),
+            meta: {
+              title: '数组扁平化',
+              desc: '将多维数组转成一维数组',
+            },
+          },
         ],
       },
       /**

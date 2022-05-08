@@ -136,14 +136,56 @@ Function.prototype.myApply = function (context: any, args: any[]) {
  * 3. 这个新对象会绑定到函数调用的this
  * 4. 如果构造函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象
  */
-// <T>。...:T 泛型 定义了什么类型，就返回什么类型
+// <T> ... :T 泛型 定义了什么类型，就返回什么类型
 export function myNew<T>(constructor: Function, ...args: any[]): T {
   // 1. 创建一个空对象，继承 constructor 原型
-  // const obj = Object.create(constructor.prototype); // 或者
-  const obj = Object.create({})
-  obj.__proto__ = constructor.prototype
+  // const obj = Object.create({});
+  // obj.__proto__ = constructor.prototype; 或者直接
+  const obj = Object.create(constructor.prototype)
   // 2. 将 obj 作为 this, 执行constructor, 传入参数
   const res = constructor.apply(obj, args)
   // 3. 判断 构造函数返回值是不是一个对象，是对象就直接返回，不是的话就返回创建的新对象
   return typeof res === 'object' ? res : obj
+}
+
+/**
+ * 数组扁平化
+ * 方法1：最简单的方法，直接es6搞定
+ */
+export function flatten(arr: any[]): any[] {
+  return arr.flat(Infinity)
+}
+
+/**
+ * 方法2： while 循环 + 扩展运算符
+ * 首先要知道的是  [].concat(3,4) 等同于 [].concat(...[3,4])
+ */
+export function flatten1(arr: any[]): any[] {
+  while (arr.some(item => Array.isArray(item))) {
+    arr = [].concat(...arr)
+  }
+  return arr
+}
+/**
+ * 方法3：reduce 数组中的每个元素按序执行一个由您提供的 reducer 函数，
+ * 每一次运行 reducer 会将先前元素的计算结果作为参数传入，最后将其结果汇总为单个返回值。不改变原数组
+ */
+export function flatten2(arr: any[]): any[] {
+  return arr.reduce(function (prev, current) {
+    return prev.concat(Array.isArray(current) ? flatten2(current) : current)
+  }, [])
+}
+/**
+ * 方法4： 最原始的方法 for/forEach循环
+ */
+export function flatten3(arr: any[]): any[] {
+  let res: any[] = []
+  arr.forEach(item => {
+    if (Array.isArray(item)) {
+      res = res.concat(flatten(item))
+    } else {
+      res.push(item)
+    }
+  })
+  return res
 }
