@@ -466,6 +466,14 @@ const routes = [
               desc: '理解apply原理并实现',
             },
           },
+          {
+            path: '/my-new',
+            component: lazy(() => import('views/Utils/MyNew')),
+            meta: {
+              title: '手写 new 函数',
+              desc: '理解new原理并实现',
+            },
+          },
         ],
       },
       /**

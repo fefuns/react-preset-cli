@@ -125,3 +125,25 @@ Function.prototype.myApply = function (context: any, args: any[]) {
   delete context[key] // 清理掉 key，防止污染
   return res
 }
+
+/**
+ * 手写实现  new
+ * constructor: 构造函数
+ * args: 参数
+ * 实现原理：
+ * 1. 创建（或者说构造）一个全新的对象
+ * 2. 这个新对象会被执行[原型]链接
+ * 3. 这个新对象会绑定到函数调用的this
+ * 4. 如果构造函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象
+ */
+// <T>。...:T 泛型 定义了什么类型，就返回什么类型
+export function myNew<T>(constructor: Function, ...args: any[]): T {
+  // 1. 创建一个空对象，继承 constructor 原型
+  // const obj = Object.create(constructor.prototype); // 或者
+  const obj = Object.create({})
+  obj.__proto__ = constructor.prototype
+  // 2. 将 obj 作为 this, 执行constructor, 传入参数
+  const res = constructor.apply(obj, args)
+  // 3. 判断 构造函数返回值是不是一个对象，是对象就直接返回，不是的话就返回创建的新对象
+  return typeof res === 'object' ? res : obj
+}
