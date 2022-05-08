@@ -421,10 +421,28 @@ const routes = [
       },
       {
         path: '/tools',
-        component: lazy(() => import('views/Basic/SetStateDemo')),
+        component: LayoutBlank,
         meta: {
           title: '工具函数',
         },
+        children: [
+          {
+            path: '/getType',
+            component: lazy(() => import('views/Utils/GetType')),
+            meta: {
+              title: '获取数据类型',
+              desc: '手写一个getType函数，获取详细的数据类型',
+            },
+          },
+          {
+            path: '/instanceof',
+            component: lazy(() => import('views/Utils/Instanceof')),
+            meta: {
+              title: '手写Instanceof',
+              desc: '手写一个getType函数，获取详细的数据类型',
+            },
+          },
+        ],
       },
       /**
        * 以下两项写在最下面
