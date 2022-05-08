@@ -482,6 +482,13 @@ const routes = [
               desc: '将多维数组转成一维数组',
             },
           },
+          {
+            path: '/get-arr-max',
+            component: lazy(() => import('views/Utils/GetArrMax')),
+            meta: {
+              title: '找数组最大值',
+            },
+          },
         ],
       },
       /**

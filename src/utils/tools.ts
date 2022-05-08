@@ -182,10 +182,36 @@ export function flatten3(arr: any[]): any[] {
   let res: any[] = []
   arr.forEach(item => {
     if (Array.isArray(item)) {
-      res = res.concat(flatten(item))
+      res = res.concat(flatten3(item))
     } else {
       res.push(item)
     }
   })
   return res
+}
+
+/**
+ * 找数组的最大值
+ * 方法1：Math.max
+ */
+export function getArrMax(arr: number[]): number {
+  // return Math.max.apply(null, arr); // 或者
+  return Math.max(...arr)
+}
+/**
+ * 方法2：reduce
+ */
+export function getArrMax1(arr: number[]): number {
+  return arr.reduce(function (prev, current) {
+    return current > prev ? current : prev
+  })
+}
+/**
+ * 方法3：先排序再找最大值
+ * @param arr
+ * @returns
+ */
+export function getArrMax2(arr: number[]): number {
+  const sortArr = arr.sort((a, b) => a - b)
+  return sortArr[sortArr.length - 1]
 }
