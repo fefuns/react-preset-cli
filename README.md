@@ -74,10 +74,10 @@
   - utils/validate.js 常用的正则。正则博大精深！！！
   - utils/tools.js 手写的小玩意
     - 判断数据类型
+    - instanceof 的模拟实现
     - bind 的模拟实现
     - call 的模拟实现
     - new 的模拟实现
-    - instanceof 的模拟实现
     - promise 的模拟实现
     - 找数组的最大值
     - 数组扁平化
