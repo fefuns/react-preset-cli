@@ -44,3 +44,28 @@ export function myInstanceof(instance: any, origin: any): boolean {
   }
   return false
 }
+
+/**
+ * 手写实现 bind 函数
+ * - 返回一个新函数，但不执行
+ * - 绑定 this 和 部分参数
+ * - 如果是箭头函数，无法改变 this，只能改变参数
+ * context: bind 传入的this
+ * bindArgs: bind 传入的其他参数
+ * 比如
+ * const fn = function(a, b) {};
+ * const fn1 = fn.bind({obj:1}, 'a')。
+ * fn1('b')
+ */
+// @ts-ignore
+// eslint-disable-next-line
+Function.prototype.myBind = function (context: any, ...bindArgs: any[]) {
+  const self = this // 1.获取到原函数
+  // 2.返回一个新的函数
+  return function (...args: any[]) {
+    // 3. bindArgs 是 上面例子中 fn.bind里面的 'a'，args 是 fn1('b') 里面的 b
+    const newArgs = bindArgs.concat(args)
+    // 返回执行原函数
+    return self.apply(context, newArgs)
+  }
+}

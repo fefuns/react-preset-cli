@@ -435,11 +435,19 @@ const routes = [
             },
           },
           {
-            path: '/instanceof',
-            component: lazy(() => import('views/Utils/Instanceof')),
+            path: '/my-instanceof',
+            component: lazy(() => import('views/Utils/MyInstanceof')),
             meta: {
               title: '手写Instanceof',
-              desc: '手写一个getType函数，获取详细的数据类型',
+              desc: '理解instanceof原理并实现',
+            },
+          },
+          {
+            path: '/my-bind',
+            component: lazy(() => import('views/Utils/MyBind')),
+            meta: {
+              title: '手写bind函数',
+              desc: '理解bind原理并实现',
             },
           },
         ],
