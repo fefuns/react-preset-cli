@@ -56,6 +56,12 @@ export function myInstanceof(instance: any, origin: any): boolean {
  * const fn = function(a, b) {};
  * const fn1 = fn.bind({obj:1}, 'a')。
  * fn1('b')
+ *
+ * 实现原理：
+ * 1. bind函数改变了this指向
+ * 2. bind函数是Function.prototype上的方法
+ * 3. bind函数的返回值也是函数
+ * 4. bind函数调用之后返回的函数的参数也同样接收处理
  */
 // @ts-ignore
 // eslint-disable-next-line
@@ -68,4 +74,54 @@ Function.prototype.myBind = function (context: any, ...bindArgs: any[]) {
     // 返回执行原函数
     return self.apply(context, newArgs)
   }
+}
+
+/**
+ * 手写实现 call 函数
+ * - bind 是返回一个新函数（不执行）, call 和 apply 会立即执行函数
+ * - 绑定 this
+ * - 传入执行参数
+ *
+ * 实现原理：
+ * 1. 将函数设为对象的方法
+ * 2. 执行该函数
+ * 3. 删除该对象方法
+ * 4. 注意的是this参数可以为null, 为null的时候，视为指向 全局对象。this参数还可以是值类型，为值类型的时候，返回该值类型的包装对象
+ */
+// @ts-ignore
+// eslint-disable-next-line
+Function.prototype.myCall = function (context: any, ...args: any[]) {
+  if (context == null) {
+    context = globalThis // globalThis 在浏览器中是指 Window，在node.js中指 Global
+  }
+  if (typeof context !== 'object') {
+    // eslint-disable-next-line
+    context = new Object(context) // 如果第一个参数是值类型，就把它变为值类型的包装对象 fn.call(1) => new Number(1)
+  }
+  const key = Symbol()
+  context[key] = this // this 就是原函数。
+  const res = context[key](...args) // 绑定了 this
+  delete context[key] // 清理掉 key，防止污染
+  return res
+}
+
+/**
+ * 手写实现 apply
+ * apply 和 call 基本一样，只是第二个参数是个数组而已
+ */
+// @ts-ignore
+// eslint-disable-next-line
+Function.prototype.myApply = function (context: any, args: any[]) {
+  if (context == null) {
+    context = globalThis // globalThis 在浏览器中是指 Window，在node.js中指 Global
+  }
+  if (typeof context !== 'object') {
+    // eslint-disable-next-line
+    context = new Object(context) // 如果第一个参数是值类型，就把它变为值类型的包装对象 fn.call(1) => new Number(1)
+  }
+  const key = Symbol()
+  context[key] = this // this 就是原函数。
+  const res = context[key](args) // 绑定了 this
+  delete context[key] // 清理掉 key，防止污染
+  return res
 }

@@ -450,6 +450,22 @@ const routes = [
               desc: '理解bind原理并实现',
             },
           },
+          {
+            path: '/my-call',
+            component: lazy(() => import('views/Utils/MyCall')),
+            meta: {
+              title: '手写call函数',
+              desc: '理解call原理并实现',
+            },
+          },
+          {
+            path: '/my-apply',
+            component: lazy(() => import('views/Utils/MyApply')),
+            meta: {
+              title: '手写apply函数',
+              desc: '理解apply原理并实现',
+            },
+          },
         ],
       },
       /**
